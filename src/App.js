@@ -17,18 +17,21 @@ function App() {
     }
   };
 
+  const escLogin = () => {
+    setUser(true)
+  };
+
   return (
     <div className="App">
-        <Switch>
-          <Route path="/details" exact component={Details} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/jobs/" exact component={Jobs} />
-          <Route path="/" exact component={Jobs} />
-          <ProtectedRoute
-            path="/jobs/:id"
-            render={(props) => <Details {...props} />}
-          />
-        </Switch>
+      <Switch>
+        <Route path="/login" exact component={Login} />
+        <Route path="/jobs/" exact component={Jobs} />
+        <Route path="/" exact component={Jobs} />
+        <ProtectedRoute
+          path="/jobs/:id"
+          render={(props) => <Details {...props} />}
+        />
+      </Switch>
     </div>
   );
 }
