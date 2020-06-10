@@ -5,21 +5,20 @@ import { Switch, Route, Redirect, Router } from "react-router-dom";
 import Jobs from "./page/Jobs.js";
 import Login from "./page/Login.js";
 import Details from "./page/Details.js";
+import { useSelector } from "react-redux";
+
 
 function App() {
-  const [user, setUser] = useState(false);
+  const user = useSelector(state => state.user)
 
   const ProtectedRoute = (props) => {
-    if (user === true) {
+    if (user.isAuthenticated === true) {
       return <Route {...props} />;
     } else {
       return <Redirect to="/login" />;
     }
   };
 
-  const escLogin = () => {
-    setUser(true)
-  };
 
   return (
     <div className="App">
