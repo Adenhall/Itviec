@@ -2,7 +2,7 @@
     "jobs": [
       {
         "id": 0,
-        "img": "/images/Logo1.png",
+        "img": "/images/Logo1.jpg",
         "title": "Designer -Balancing/Mid-core 3D RPG",
         "salary": "2500",
         "city": "Ho Chi Minh",
@@ -64,7 +64,7 @@
       },
       {
         "id": 3,
-        "img": "/images/Logo4.png",
+        "img": "/images/Logo4.jpg",
         "title": "Technical Leader (PHP, JavaScript)",
         "salary": 3000,
         "city": "Ha Noi",
@@ -85,7 +85,7 @@
       },
       {
         "id": 4,
-        "img": "/images/Logo5.png",
+        "img": "/images/Logo5.jpg",
         "title": "All levels Frontend (JavaScript/ReactJS)",
         "salary": 3000,
         "city": "Ho Chi Minh",

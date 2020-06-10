@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import JobCards from '../components/JobCards.js'
+import JobCards from "../components/JobCards.js";
+import { Navbar, Form, FormControl, Button, Container} from "react-bootstrap";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -17,9 +18,17 @@ export default function Jobs() {
   }, []);
 
   return (
-    <div>
-      
+    <div style={{ backgroundColor: "#e6ffff" }}>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">IT VIEC</Navbar.Brand>
+        <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-info">Search</Button>
+        </Form>
+      </Navbar>
+      <Container>
         {jobs && jobs.map((item) => <JobCards job={item} key={item.id} />)}
+      </Container>
       
     </div>
   );
