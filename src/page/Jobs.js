@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import JobCards from "../components/JobCards.js";
 import { Navbar, Form, FormControl, Button, Container} from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux'
 
 const QUERYSTR_PREFIX = "q";
 
@@ -13,6 +14,8 @@ let keyword =''
 
 export default function Jobs() {
   let history =useHistory();
+  const dispatch = useDispatch();
+  const state = useSelector(state => state)
   const [jobs, setJobs] = useState([]);
   const [originalList, setOriginalList] = useState([])
   let query = useQuery();
@@ -48,16 +51,29 @@ export default function Jobs() {
       setJobs(tempArray)
     } else setJobs(originalList)
     
-  }
+  };
+
+  const LoginButton = () => {
+    return state.user.email ? (
+      <Form inline onSubmit={(e) => searchByKeyword(e)}>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=> keyword = e.target.value}/>
+          <Button variant="outline-info" type="submit">Search</Button>
+          <Button variant="outline-success" type="submit" onClick={() => dispatch({ type: "LOGOUT" })}>
+        Sign out
+      </Button>
+        </Form>
+    ) : (
+      <Button variant="outline-success" onClick={() => history.push("/login")}>
+        SIGN IN TO SEARCH!
+      </Button>
+    );
+  };
 
   return (
     <div style={{ backgroundColor: "#e6ffff" }}>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">IT VIEC</Navbar.Brand>
-        <Form inline onSubmit={(e) => searchByKeyword(e)}>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=> keyword = e.target.value}/>
-          <Button variant="outline-info" type="submit">Search</Button>
-        </Form>
+        {LoginButton()}
       </Navbar>
       <Container>
         {jobs && jobs.map((item) => <JobCards job={item} key={item.id} />)}

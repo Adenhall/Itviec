@@ -9,6 +9,11 @@ const initialstate = {
       state.user = action.payload
       state.user.isAuthenticated = true;
     }
+    if (action.type === "LOGOUT") {
+      state.user.email = null
+      state.user.password = null
+      state.user.isAuthenticated = false
+    }
     return state
   
   }
